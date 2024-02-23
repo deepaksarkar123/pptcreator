@@ -23,12 +23,12 @@ body, html {
 
 #ribbon {
   position: absolute;
-  top: 30%;
+  top: 20%;
   left: 0;
   right: 0;
   margin: auto;
   z-index: 2;
-  opacity: 0.7; /* Translucent appearance */
+  opacity: 0.9; /* Translucent appearance */
   width: 100%; /* Adjust based on actual image size */
 }
 
