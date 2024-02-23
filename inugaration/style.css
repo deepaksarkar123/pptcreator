@@ -42,3 +42,11 @@ body, html {
   cursor: pointer;
   z-index: 3;
 }
+@keyframes tinyJump {
+  0%, 100% { transform: translateX(-50%); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+#scissorButton {
+  animation: tinyJump 1s ease-in-out infinite;
+}
