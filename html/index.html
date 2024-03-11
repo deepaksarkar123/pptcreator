@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Planner</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .summary-table, .services-table, .priorities-table, .ask-me-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .summary-table th, .summary-table td, .services-table th, .services-table td, .priorities-table th, .priorities-table td, .ask-me-table th, .ask-me-table td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+  .summary-table th, .services-table th, .priorities-table th, .ask-me-table th {
+    background-color: #f2f2f2;
+  }
+  .title, .services-title, .priorities-title, .ai-predictor-title, .reports-title, .ask-me-title {
+    text-align: left;
+    font-size: 24px;
+    margin: 20px 0;
+    background-color: lightblue;
+    padding: 10px;
+  }
+  .reports-section, .services-section, .priorities-section, .ai-predictor-section, .ask-me-section {
+    margin-top: 30px;
+  }
+  .iframe-container {
+    height: 640px;
+    overflow: hidden;
+    position: relative;
+  }
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1400px;
+    height: 700px;
+  }
+  .submit-icon {
+    display: inline-block;
+    margin-top: 4px;
+  }
+  .ai-predictor-icon {
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 20px;
+  }
+</style>
+</head>
+<body>
+  <div class="title">Executive Summary</div>
+  <table class="summary-table">
+    <tr>
+      <th>Account name</th>
+      <td id="accountName">Aliaxis</td>
+      <th>Year of Establishment</th>
+      <td>2003</td>
+    </tr>
+    <tr>
+      <th>HQ Location</th>
+      <td>Brussels Area, Belgium</td>
+      <th>&nbsp;</th>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <th>Primary vertical</th>
+      <td>Chemicals & Materials</td>
+      <th>&nbsp;</th>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <th>Mission</th>
+      <td colspan="3">To build up alignment to ensure fast and flawless implementation of all ExCom decisions, cascade information and make sure their whole organisation across the globe is fully mobilised to deliver results</td>
+    </tr>
+    <tr>
+      <th>Annual Revenue</th>
+      <td>€4.3 billion</td>
+      <th>Net Profit</th>
+      <td>€323.9 million</td>
+    </tr>
+  </table>
+  <div class="reports-section">
+    <div class="reports-title">Account Highlights</div>
+    <div class="iframe-container">
+      <iframe title="Catalyst_PowerBI" src="https://app.powerbi.com/view?r=eyJrIjoiYjMxYzE3MDQtNTZjOS00ZWNlLThiZDYtNWI1ZGMyNWQ5ZTZmIiwidCI6IjVlMDA3YjZjLTI1OGItNGZkZS1hZGMxLThiZjhhMTM1ODg1ZCIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>
+    </div>
+  </div>
+  <div class="services-section">
+    <div class="services-title">MINDSPRINT services for <span id="dynamicAccountName1"></span></div>
+    <table class="services-table">
+        <thead>
+            <tr>
+              <th>Customer Requirements</th>
+              <th>Mindsprint Service</th>
+              <th>Rationale</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Customer Requirement</td>
+              <td>Mindsprint Service suitable for Customer Requirement will show up here</td>
+              <td>Rationale to explain why the mentioned Mindsprint service is a suitable match for the Customer Requirement will show up here</td>
+            </tr>
+          </tbody>
+    </table>
+  </div>
+  <div class="priorities-section">
+    <div class="priorities-title"><span id="dynamicAccountName2">Account name</span> Priorities</div>
+    <table class="priorities-table">
+        <thead>
+          <tr>
+            <th>Customer Priority</th>
+            <th>Mindsprint Service</th>
+            <th>Rationale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input type="text" name="priority1" placeholder="Enter priority">
+              <button class="submit-icon" onclick="submitPriority(1)">Submit</button>
+            </td>
+            <td>Mindsprint Service suitable for Customer Priority will show up here</td>
+            <td>Rationale to explain why the mentioned Mindsprint service is a suitable match for the Customer Priority will show up here</td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" name="priority2" placeholder="Enter priority">
+              <button class="submit-icon" onclick="submitPriority(2)">Submit</button>
+            </td>
+            <td>Mindsprint Service suitable for Customer Priority will show up here</td>
+            <td>Rationale to explain why the mentioned Mindsprint service is a suitable match for the Customer Priority will show up here</td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+  <div class="ai-predictor-section">
+    <div class="ai-predictor-title">AI Predictor</div>
+    <div class="ai-predictor-content">
+      <span class="ai-predictor-icon" onclick="callAIPredictorAPI()"><img src="globe.png" alt="AI Predictor Icon" style="width: 250px; height: 250px;"></span>
+      <div id="ai-predictor-response"></div>
+    </div>
+  </div>
+  <div class="ask-me-section">
+    <div class="ask-me-title">Ask Me About <span id="dynamicAccountName3"></span></div>
+    <table class="ask-me-table">
+        <thead>
+          <tr>
+            <th>Question</th>
+            <th>Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input type="text" name="question" placeholder="Enter your question">
+              <button class="submit-icon" onclick="submitQuestion()">Submit</button>
+            </td>
+            <td id="api-response">Response will be displayed here after submitting the question</td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+  <script>
+    var accountName = document.getElementById('accountName').textContent;
+    document.getElementById('dynamicAccountName1').textContent = accountName;
+    document.getElementById('dynamicAccountName2').textContent = accountName;
+    document.getElementById('dynamicAccountName3').textContent = accountName;
+
+    function callAIPredictorAPI() {
+      // Example API call for AI Predictor
+      fetch('https://api.example.com/ai-predictor', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ accountName: accountName })
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('ai-predictor-response').textContent = data.prediction;
+      })
+      .catch(error => console.error('Error:', error));
+    }
+
+    function submitQuestion() {
+      // Example API call for submitting a question
+      var question = document.querySelector('input[name="question"]').value;
+      // This is a placeholder for an API call that handles the question
+      // Update the URL and request body as necessary for your actual API
+      fetch('https://api.example.com/question-handler', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ question: question, accountName: accountName })
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('api-response').textContent = data.response;
+      })
+      .catch(error => console.error('Error:', error));
+    }
+  </script>
+</body>
+</html>
