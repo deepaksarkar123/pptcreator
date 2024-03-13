@@ -5,58 +5,88 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Account Planner</title>
 <style>
+  :root {
+    --primary-color: #005792;
+    --secondary-color: #e8f1f5;
+    --accent-color: #f4b41a;
+    --text-color: #333;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --border-radius: 8px;
+  }
   body {
-    font-family: Arial, sans-serif;
-  }
-  .summary-table, .services-table, .priorities-table, .ask-me-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .summary-table th, .summary-table td, .services-table th, .services-table td, .priorities-table th, .priorities-table td, .ask-me-table th, .ask-me-table td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
-  }
-  .summary-table th, .services-table th, .priorities-table th, .ask-me-table th {
-    background-color: #f2f2f2;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    background-color: var(--secondary-color);
   }
   .title, .services-title, .priorities-title, .ai-predictor-title, .reports-title, .ask-me-title {
-    text-align: left;
-    font-size: 24px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px;
     margin: 20px 0;
-    background-color: lightblue;
-    padding: 10px;
+    border-radius: var(--border-radius);
+    font-size: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  .reports-section, .services-section, .priorities-section, .ai-predictor-section, .ask-me-section {
-    margin-top: 30px;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+  }
+  th {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  tr:nth-child(even) {
+    background-color: var(--secondary-color);
   }
   .iframe-container {
-    height: 640px;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
   }
   iframe {
     position: absolute;
     top: 0;
     left: 0;
-    width: 1400px;
-    height: 700px;
+    width: 100%;
+    height: 100%;
+    border: none;
   }
-  .submit-icon {
-    display: inline-block;
+  input[type="text"], button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
     margin-top: 10px;
-    margin-bottom: 10px;
+    font-family: var(--font-family);
+    font-size: 16px;
   }
-  .ai-predictor-icon {
+  button {
+    background-color: var(--accent-color);
+    color: white;
     cursor: pointer;
-    display: inline-block;
-    margin-left: 20px;
+    transition: background-color 0.3s ease;
   }
-  /* Additional CSS for making the "Enter your priority" input bigger */
-  input[name="aliaxisPriority"] {
-    width: 98%; /* Makes the input field take the full width of its parent container */
-    padding: 10px; /* Increases the padding inside the input box for bigger size */
-    font-size: 16px; /* Increases the font size within the input box */
+  button:hover {
+    background-color: darken(var(--accent-color), 10%);
+  }
+  .submit-icon, .ai-predictor-icon {
+    margin: 10px 0;
+  }
+  .ai-predictor-icon img {
+    width: 100px;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  .ai-predictor-icon:hover img {
+    transform: scale(1.1);
   }
 </style>
 </head>
@@ -85,6 +115,10 @@
       <th>Net Profit</th>
       <td>€323.9 million</td>
     </tr>
+    <tr>
+        <th>Executive Summary</th>
+        <td colspan="3">Aliaxis is a global leader in advanced fluid management solutions, enabling access to water and energy through its comprehensive portfolio of sustainable and innovative solutions for building infrastructure, industrial, and agricultural applications. The company's purpose is to address the world's water challenges and facilitate the transition to clean energy, embodying this through a strategy focused on sustainability, innovation, being locally grounded, and future-focused. <br><br> In 2022, Aliaxis reported significant growth with revenues of €4.3 billion, a notable increase in net profit to €371 million, and an emphasis on reducing its carbon footprint and increasing the use of recycled materials in its products. Despite facing challenges such as geopolitical turmoil and inflation, Aliaxis has maintained a strong financial position and continues to invest in expanding its operations, particularly in the United States, and in enhancing its product development capabilities. <br><br> The company prioritizes customer intimacy, operational excellence, sustainability, and the development of its workforce to drive its strategic objectives and address pressing environmental challenges.</td>
+      </tr>
   </table>
   <div class="reports-section">
     <div class="reports-title">Account Highlights</div>
@@ -104,7 +138,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>Customer Requirement</td>
+              <td>Customer Requirements from the analysis will appear here</td>
               <td>Mindsprint Service suitable for Customer Requirement will show up here</td>
               <td>Rationale to explain why the mentioned Mindsprint service is a suitable match for the Customer Requirement will show up here</td>
             </tr>
@@ -125,21 +159,21 @@
         </thead>
         <tbody>
           <tr>
-            <td>Example Priority</td>
-            <td>Example Service</td>
-            <td>Example Rationale</td>
+            <td>Customer Priority entered by sales will appear here</td>
+            <td>Mindsprint service suitable for the mentioned priority will appear here</td>
+            <td>Rationale to explain why the mentioned Mindsprint service is a suitable match for the priority will appear up here</td>
           </tr>
         </tbody>
     </table>
   </div>
   <div class="ai-predictor-section">
     <div class="ai-predictor-title">AI Predictor</div>
-    <div class="ai-predictor-content">
-      <span class="ai-predictor-icon" onclick="callAIPredictorAPI()"><img src="globe.png" alt="AI Predictor Icon" style="width: 250px; height: 250px;"></span>
-      <div id="ai-predictor-response"></div>
+    <div class="ai-predictor-content" style="display: flex;">
+      <span class="ai-predictor-icon" onclick="callAIPredictorAPI()"><img src="globe.png" alt="AI Predictor Icon" style="width: 150px; height: 150px;"></span>
+      <div id="ai-predictor-response" style="margin-left: 50px;">The generated response will appear here. Catalyst will make a predition based on the provided data about the client.</div>
     </div>
   </div>
-  <div class="ask-me-section">
+  <!-- <div class="ask-me-section">
     <div class="ask-me-title">Ask Me About <span id="dynamicAccountName3"></span></div>
     <table class="ask-me-table">
         <thead>
@@ -158,7 +192,7 @@
           </tr>
         </tbody>
     </table>
-  </div>
+  </div> -->
   <script>
     var accountName = document.getElementById('accountName').textContent;
     document.getElementById('dynamicAccountName1').textContent = accountName;
@@ -184,8 +218,6 @@
     function submitQuestion() {
       // Example API call for submitting a question
       var question = document.querySelector('input[name="question"]').value;
-      // This is a placeholder for an API call that handles the question
-      // Update the URL and request body as necessary for your actual API
       fetch('https://api.example.com/question-handler', {
         method: 'POST',
         headers: {
